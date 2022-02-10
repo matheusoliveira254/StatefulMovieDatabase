@@ -6,32 +6,21 @@
 //
 
 import Foundation
-class Movie {
-    enum Keys: String {
+
+struct TopLevelDictionary: Decodable {
+    let results: [Movie]
+}
+
+struct Movie: Decodable {
+    private enum CodingKeys: String, CodingKey {
         case title = "original_title"
         case rating = "vote_average"
-        case overview = "overview"
-        case poster = "poster_path"
+        case overview
+        case posterPath = "poster_path"
     }
-    
-    var title: String
-    var rating: Double
-    var overview: String
-    private var posterPath: String
-    var imageURL: String {
-        return "https://image.tmdb.org/t/p/w500/\(posterPath)"
-    }
-    
-    init?(dictionary: [String:Any]) {
-        
-        guard let title = dictionary[Keys.title.rawValue] as? String,
-              let rating = dictionary[Keys.rating.rawValue] as? Double,
-              let overview = dictionary[Keys.overview.rawValue] as? String,
-              let imageEndpoint = dictionary[Keys.poster.rawValue] as? String else { return nil }
-        
-        self.title = title
-        self.rating = rating
-        self.overview = overview
-        self.posterPath = imageEndpoint
-    }
+    let title: String
+    let rating: Double
+    let overview: String
+    let posterPath: String?
 }
+

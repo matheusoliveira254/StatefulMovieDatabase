@@ -27,9 +27,15 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func fetchImage(for movie: Movie) {
-        NetworkController.image(forURL: (movie.imageURL)) { [weak self] (image) in
-            DispatchQueue.main.async {
-                self?.image = image
+        guard let posterPath = movie.posterPath else {return}
+        NetworkController.fetchImage(with: posterPath) { [weak self] result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.image = image
+                }
+            case .failure(let error):
+                print("There was an error with the image!", error.errorDescription!)
             }
         }
     }
@@ -42,6 +48,3 @@ class MovieTableViewCell: UITableViewCell {
         contentConfiguration = configuration
     }
 }
-
-// MARK: - Functions
-

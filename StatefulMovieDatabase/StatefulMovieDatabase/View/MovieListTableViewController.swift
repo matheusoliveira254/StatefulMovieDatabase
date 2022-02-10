@@ -10,20 +10,16 @@ import UIKit
 class MovieListTableViewController: UITableViewController {
     
     // MARK: - Outlets
-    
     @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Properties
-    
     var movies: [Movie] = []
     
     // MARK: - Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
     }
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -50,15 +46,17 @@ extension MovieListTableViewController: UISearchBarDelegate {
             return
         }
         
-        NetworkController.fetchMovieWith(searchTerm: searchTerm) { movie in
-            guard let movie = movie else { return }
-            self.movies = movie
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.searchBar.resignFirstResponder()
+        NetworkController.fetchMovieWith(searchTerm: searchTerm) { result in
+            switch result {
+            case .success(let cinema):
+                self.movies = cinema.results
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.searchBar.resignFirstResponder()
+                }
+            case .failure(let error):
+                print("There was an error!", error.errorDescription!)
             }
         }
     }
-    
 }
