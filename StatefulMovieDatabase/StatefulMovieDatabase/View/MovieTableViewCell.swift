@@ -16,23 +16,16 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
-    func setConfiguration(with movie: Movie) {
-        fetchImage(for: movie)
+    func updateView() {
+        //TODO: - Update the Strings with the real values
         var configuration = defaultContentConfiguration()
-        configuration.text = movie.title
-        configuration.secondaryText = movie.overview
+        configuration.text = "What's love got to do with it?"
+        configuration.secondaryText = "Whats love but a second hand emotion"
         configuration.secondaryTextProperties.numberOfLines = 4
         configuration.imageProperties.maximumSize = CGSize(width: 50, height: 100)
         contentConfiguration = configuration
     }
     
-    func fetchImage(for movie: Movie) {
-        NetworkController.image(forURL: (movie.imageURL)) { [weak self] (image) in
-            DispatchQueue.main.async {
-                self?.image = image
-            }
-        }
-    }
     
     override func updateConfiguration(using state: UICellConfigurationState) {
         // Called when the image is set

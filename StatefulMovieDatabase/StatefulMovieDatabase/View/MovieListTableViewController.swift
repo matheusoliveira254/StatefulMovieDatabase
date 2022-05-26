@@ -13,9 +13,6 @@ class MovieListTableViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    // MARK: - Properties
-    
-    var movies: [Movie] = []
     
     // MARK: - Functions
     
@@ -27,15 +24,12 @@ class MovieListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return movies.count
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
-        
-        let movie = movies[indexPath.row]
-        cell.setConfiguration(with: movie)
-        
+        //TODO: - Finish the Cell Set up
         return cell
     }
     
@@ -45,20 +39,6 @@ extension MovieListTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        guard let searchTerm = searchBar.text else {
-            print("No text entered.")
-            return
-        }
-        
-        NetworkController.fetchMovieWith(searchTerm: searchTerm) { movie in
-            guard let movie = movie else { return }
-            self.movies = movie
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.searchBar.resignFirstResponder()
-            }
-        }
     }
-    
+    //TODO: - Search for a Movie
 }
