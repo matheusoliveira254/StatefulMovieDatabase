@@ -24,7 +24,6 @@ class MovieListTableViewController: UITableViewController {
         searchBar.delegate = self
     }
     
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return movies.count
@@ -38,7 +37,6 @@ class MovieListTableViewController: UITableViewController {
         
         return cell
     }
-    
 }
 
 extension MovieListTableViewController: UISearchBarDelegate {
@@ -60,5 +58,4 @@ extension MovieListTableViewController: UISearchBarDelegate {
             }
         }
     }
-    
 }
