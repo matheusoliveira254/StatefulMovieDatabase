@@ -19,6 +19,10 @@ class MovieTableViewCell: UITableViewCell {
             setNeedsUpdateConfiguration()
         }
     }
+    func fetchImage(for movie: Movie) {
+        guard let posterPath = movie.posterPath else {return}
+        UIImageView.loadImageFrom(posterPath)
+    }
     
     func updateView(with movie: Movie) {
         //TODO: - Update the Strings with the real values

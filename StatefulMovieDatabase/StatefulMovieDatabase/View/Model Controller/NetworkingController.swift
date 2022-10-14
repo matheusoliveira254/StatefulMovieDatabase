@@ -5,7 +5,7 @@
 //  Created by Matheus Oliveira on 10/13/22.
 //
 
-import Foundation
+import UIKit
 
 class NetworkingController {
     
@@ -47,6 +47,22 @@ class NetworkingController {
             }
         }.resume()
     }//end of the func
+    
+    static func fetchImage(with posterPath: String, completion: @escaping (Result<UIImage, ResultError>) -> Void) {
+        guard let imageBaseURL = URL(string: "https://image.tmdb.org/t/p/w500") else {return}
+        let imageURL = imageBaseURL.appendingPathComponent(posterPath)
+        
+        URLSession.shared.dataTask(with: imageURL) { data, _, error in
+            if let error {
+                completion(.failure(.unableToDecode))
+            }
+            
+            guard let data = data else {completion(.failure(.noData)); return}
+            guard let movieImage = UIImage(data: data) else {completion(.failure(.noData)); return}
+            completion(.success(movieImage))
+        }.resume()
+        
+    }//End of Image func
 }//End of the class
 
 //https://api.themoviedb.org/3/search/movie?api_key=bfb9225fcd93091f6a7e19e6e22a3b59&query=jaws
