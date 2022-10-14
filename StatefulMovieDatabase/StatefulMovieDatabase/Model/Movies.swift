@@ -21,5 +21,4 @@ struct Movie: Decodable {
     let title: String
     let vote: Double
     private let posterPath: String
-    var imageURL = "https://image.tmdb.org/t/p/w500\(posterPath)"
 }

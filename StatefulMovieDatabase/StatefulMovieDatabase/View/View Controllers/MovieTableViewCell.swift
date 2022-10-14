@@ -8,6 +8,10 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
+    //MARK: - IBOutlets
+    @IBOutlet weak var moviePosterImageView: UIImageView!
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var movieRatingLabel: UILabel!
     
     // MARK: - Properties
     var image: UIImage? {

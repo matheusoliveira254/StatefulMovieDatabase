@@ -39,6 +39,7 @@ class NetworkingController {
             do {
                 let topLevelDictionary = try JSONDecoder().decode(TopLevelDictionary.self, from: movieData)
                 let movie = topLevelDictionary.results
+                completion(.success(movie))
             } catch {
                 print("❌Unable to decode!")
                 completion(.failure(.unableToDecode))
