@@ -16,9 +16,11 @@ struct Movie: Decodable {
         case title
         case vote = "vote_average"
         case posterPath = "poster_path"
+        case overview
     }
     
     let title: String
     let vote: Double
-    private let posterPath: String
+    let posterPath: String
+    let overview: String
 }

@@ -13,6 +13,8 @@ class MovieListTableViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    //MARK: - Properties
+    var movies: [Movie] = []
     
     // MARK: - Functions
     
@@ -21,15 +23,16 @@ class MovieListTableViewController: UITableViewController {
         searchBar.delegate = self
     }
     
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return movies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
-        //TODO: - Finish the Cell Set up
+        let movie = movies[indexPath.row]
+        cell.updateView()
+
         return cell
     }
     

@@ -11,7 +11,7 @@ class MovieTableViewCell: UITableViewCell {
     //MARK: - IBOutlets
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var movieRatingLabel: UILabel!
+    @IBOutlet weak var movieDescriptionLabel: UILabel!
     
     // MARK: - Properties
     var image: UIImage? {
@@ -20,16 +20,15 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
-    func updateView() {
+    func updateView(with movie: Movie) {
         //TODO: - Update the Strings with the real values
         var configuration = defaultContentConfiguration()
-        configuration.text = "What's love got to do with it?"
-        configuration.secondaryText = "Whats love but a second hand emotion"
+        configuration.text = movie.title
+        configuration.secondaryText = movie.overview
         configuration.secondaryTextProperties.numberOfLines = 4
-        configuration.imageProperties.maximumSize = CGSize(width: 50, height: 100)
+        configuration.imageProperties.maximumSize = CGSize(width: 150, height: 150)
         contentConfiguration = configuration
     }
-    
     
     override func updateConfiguration(using state: UICellConfigurationState) {
         // Called when the image is set
