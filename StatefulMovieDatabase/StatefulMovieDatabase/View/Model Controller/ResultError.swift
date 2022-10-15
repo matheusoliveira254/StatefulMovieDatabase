@@ -15,7 +15,6 @@ enum ResultError: LocalizedError {
     case unableToDecode
     case noUser
     
-    
     var errorDescription: String? {
         switch self {
         case .invalidURL(let url):

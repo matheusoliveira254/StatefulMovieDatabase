@@ -67,11 +67,6 @@
                                         <constraint firstAttribute="trailing" secondItem="JyC-XL-QxX" secondAttribute="trailing" constant="5" id="eLU-JO-Dfx"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="movieDescriptionLabel" destination="OX2-Zv-7TD" id="eD9-MJ-e0a"/>
-                                    <outlet property="moviePosterImageView" destination="VgT-WG-AD2" id="XjB-Rm-nPX"/>
-                                    <outlet property="movieTitleLabel" destination="bj2-Fl-qPW" id="F1y-mw-hQs"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
